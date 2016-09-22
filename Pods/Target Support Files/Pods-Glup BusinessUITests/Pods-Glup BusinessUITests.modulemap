@@ -1,6 +1,0 @@
-framework module Pods_Glup_BusinessUITests {
-  umbrella header "Pods-Glup BusinessUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

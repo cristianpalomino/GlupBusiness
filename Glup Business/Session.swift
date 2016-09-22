@@ -14,5 +14,5 @@ class Session {
     var cupon   :Cupon!
  
     static let sharedInstance = Session()
-    private init() {}
+    fileprivate init() {}
 }

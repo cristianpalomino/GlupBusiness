@@ -28,18 +28,18 @@ extension QRReaderViewController {
         UIUtil.transparentNavigationBar(self)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if (session?.running == false) {
+        if (session?.isRunning == false) {
             session.startRunning()
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if (session?.running == true) {
+        if (session?.isRunning == true) {
             session.stopRunning()
         }
     }
@@ -50,7 +50,7 @@ extension QRReaderViewController {
     func initQRReader() {
         
         session = AVCaptureSession()
-        let videoCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let videoCaptureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         let videoInput: AVCaptureDeviceInput?
         
         do {
@@ -70,7 +70,7 @@ extension QRReaderViewController {
         if (session.canAddOutput(metadataOutput)) {
             session.addOutput(metadataOutput)
             
-            metadataOutput.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             metadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
             
         } else {
@@ -86,16 +86,16 @@ extension QRReaderViewController {
     }
     
     func scanningNotPossible() {
-        let alert = UIAlertController(title: "Can't Scan.", message: "Let's try a device equipped with a camera.", preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-        presentViewController(alert, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Can't Scan.", message: "Let's try a device equipped with a camera.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
         session = nil
     }
 }
 
 extension  QRReaderViewController : AVCaptureMetadataOutputObjectsDelegate {
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [AnyObject]!, fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
         if let barcodeData = metadataObjects.first {
             let barcodeReadable = barcodeData as? AVMetadataMachineReadableCodeObject;
             if let readableCode = barcodeReadable {
@@ -111,23 +111,23 @@ extension  QRReaderViewController : AVCaptureMetadataOutputObjectsDelegate {
 
 extension QRReaderViewController : ServiceDelegate {
     
-    func serviceSuccess<T>(response: T) {
+    func serviceSuccess<T>(_ response: T) {
         if let cupon = response as? Cupon {
             Session.sharedInstance.cupon = cupon
-            self.performSegueWithIdentifier("toDetail", sender: nil)
+            self.performSegue(withIdentifier: "toDetail", sender: nil)
         }
     }
     
-    func serviceFailed(error: ErrorType) {
+    func serviceFailed(_ error: Error) {
         infoView.animation = "shake"
-        infoView.backgroundColor = UIColor.redColor()
+        infoView.backgroundColor = UIColor.red
         infoText.text = (error as NSError).localizedDescription
-        infoText.textColor = UIColor.whiteColor()
+        infoText.textColor = UIColor.white
         infoView.animate()
-        infoView.animateToNext({
-            self.infoView.backgroundColor = UIColor.whiteColor()
+        infoView.animateToNext(completion: {
+            self.infoView.backgroundColor = UIColor.white
             self.infoText.text = "Escanear al código QR del cupón"
-            self.infoText.textColor = UIColor.blackColor()
+            self.infoText.textColor = UIColor.black
             self.infoView.duration = 3
             self.session.startRunning()
         })

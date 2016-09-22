@@ -1,0 +1,6 @@
+framework module Pods_Glup_EmpresaUITests {
+  umbrella header "Pods-Glup EmpresaUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

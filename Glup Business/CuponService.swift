@@ -18,23 +18,20 @@ class CuponService {
     }
     
     static let sharedInstance = CuponService()
-    private init() {}
+    fileprivate init() {}
 }
 
 extension CuponService {
     
     func serviceCupon() {
-        let params = ["barCode":Session.sharedInstance.code , "tag":"infoCouponQR"]
-        
-        Alamofire.request(.POST, CuponService.EndPoints.URL,
-            parameters: params,
-            encoding: .URL).responseJSON {
+        let params = ["barCode": Session.sharedInstance.code! , "tag": "infoCouponQR"]
+        Alamofire.request(CuponService.EndPoints.URL, method : .post, parameters: params, encoding: URLEncoding.default).responseJSON {
                 response in
                 switch response.result {
-                case .Success:
+                case .success:
                     if let value = response.result.value {
                         let json = JSON(value)
-                        if !json["error"].isExists() {
+                        if !json["error"].exists() {
                             let cupon = Cupon(json: json)
                             self.serviceDelegate.serviceSuccess(cupon)
                         }
@@ -48,7 +45,7 @@ extension CuponService {
                         self.serviceDelegate.serviceFailed(error)
                     }
                     
-                case .Failure(let error):
+                case .failure(let error):
                     self.serviceDelegate.serviceFailed(error)
             }
         }
@@ -57,13 +54,13 @@ extension CuponService {
 
 protocol ServiceDelegate {
     
-    func serviceSuccess<T>(response :T)
-    func serviceFailed(error :ErrorType)
+    func serviceSuccess<T>(_ response :T)
+    func serviceFailed(_ error :Error)
 }
 
 extension NSError {
     
-    static func errorWithMessagep(message :String) -> NSError {
+    static func errorWithMessagep(_ message :String) -> NSError {
         return NSError(domain: "com.glup.business", code: 100, userInfo: [NSLocalizedDescriptionKey: message])
     }
 }

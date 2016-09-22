@@ -11,12 +11,12 @@ import UIKit
 
 class UIUtil {
     
-    class func transparentNavigationBar(viewController: UIViewController)
+    class func transparentNavigationBar(_ viewController: UIViewController)
     {
         let navigationBar = viewController.navigationController!.navigationBar
-        navigationBar.setBackgroundImage(UIImage(), forBarMetrics: UIBarMetrics.Default)
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
-        navigationBar.translucent = false
+        navigationBar.isTranslucent = false
         
         self.customizeNavigationBarTitle(viewController)
         self.customizeRightBarButtonItem(viewController)
@@ -26,30 +26,30 @@ class UIUtil {
     // MARK: - Status Bar
     class func whiteStatusBar()
     {
-        UIApplication.sharedApplication().statusBarHidden = false
-        UIApplication.sharedApplication().statusBarStyle = .LightContent
+        UIApplication.shared.isStatusBarHidden = false
+        UIApplication.shared.statusBarStyle = .lightContent
     }
     
-    class func customizeRightBarButtonItem(viewController: UIViewController) {
+    class func customizeRightBarButtonItem(_ viewController: UIViewController) {
         if let rightBarButtonItem = viewController.navigationItem.rightBarButtonItem {
             rightBarButtonItem.setTitleTextAttributes(
                 [NSFontAttributeName: UIFont(name: "Montserrat-Light", size: 14)!],
-                forState: UIControlState.Normal)
+                for: UIControlState())
         }
     }
     
-    class func customizeLeftBarButtonItem(viewController: UIViewController) {
+    class func customizeLeftBarButtonItem(_ viewController: UIViewController) {
         if let leftBarButtonItem = viewController.navigationItem.leftBarButtonItem {
             leftBarButtonItem.setTitleTextAttributes(
                 [NSFontAttributeName: UIFont(name: "Montserrat-Light", size: 14)!],
-                forState: UIControlState.Normal)
+                for: UIControlState())
         }
     }
     
-    class func customizeNavigationBarTitle(viewController: UIViewController) {
+    class func customizeNavigationBarTitle(_ viewController: UIViewController) {
         if let navigationBar = viewController.navigationController?.navigationBar {
             navigationBar.titleTextAttributes =
-                [NSForegroundColorAttributeName: UIColor.whiteColor(), NSFontAttributeName: UIFont(name: "Montserrat-Light", size: 16)!]
+                [NSForegroundColorAttributeName: UIColor.white, NSFontAttributeName: UIFont(name: "Montserrat-Light", size: 16)!]
         }
     }
 }

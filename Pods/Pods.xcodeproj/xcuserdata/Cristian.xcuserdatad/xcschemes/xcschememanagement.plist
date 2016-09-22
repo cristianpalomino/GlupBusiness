@@ -9,17 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Glup Business.xcscheme</key>
+		<key>Pods-Glup Empresa.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Glup BusinessTests.xcscheme</key>
+		<key>Pods-Glup EmpresaTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Glup BusinessUITests.xcscheme</key>
+		<key>Pods-Glup EmpresaUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10C089FA626B9EA703397B0A18C2A11A</key>
+		<key>1359A3316EA875B1B72310810BB6B8D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1167BFF6920A3795C4F55317F5FEB06A</key>
+		<key>261409B55F4710A3ED3DCF4F8B397EDC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>31A697B8BD3C6D99CAF7726CBB683D0B</key>
+		<key>28F9DE59C540D069F8857B25977AC8F2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>511E4D6A423F64FE8EB5ECC976A5677D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D76480C68A842F298851965B60F3782</key>
+		<key>38E1EA589EB4619DF347F7136F46D1BE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D35C7C1BF31456B6D4D590B7F2984538</key>
 		<dict>
 			<key>primary</key>
 			<true/>

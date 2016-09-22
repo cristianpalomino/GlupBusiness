@@ -32,7 +32,7 @@ extension CuponViewController {
         initCupon()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
 }
@@ -41,14 +41,14 @@ extension CuponViewController {
     
     func initCupon() {
         
-        mallname.text = cupon.mallName
-        placename.text = cupon.placeName
-        totaldiscount.text = cupon.discount
-        storename.text = cupon.storeName
-        wearname.text = cupon.wearName
-        sizeslist.text = cupon.listSize
-        price.text = "S/. \(cupon.wearPrice)"
-        descripcion.text = cupon.promotionDescription
+        mallname.text = cupon!.mallName!
+        placename.text = cupon!.placeName!
+        totaldiscount.text = cupon!.discount!
+        storename.text = cupon!.storeName!
+        wearname.text = cupon!.wearName!
+        sizeslist.text = cupon!.listSize!
+        price.text = "S/. \(cupon!.wearPrice!)"
+        descripcion.text = cupon!.promotionDescription!
     }
 }
 
